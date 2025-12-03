@@ -52,4 +52,4 @@ jobs:
       - name: Install Resharper
         run: dotnet tool install --local JetBrains.ReSharper.GlobalTools --version 2025.3.0.3
       - name: Run ReSharper Inspection
-        run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.json --format=Json
+        run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.json --format=Sarif
