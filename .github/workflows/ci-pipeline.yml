@@ -88,4 +88,7 @@ jobs:
           dotnet tool update dotnet-sonarscanner --tool-path ${{ runner.temp }}\scanner
       - name: Build and analyze
         shell: powershell
-        run: "${{ runner.temp }}\\scanner\\dotnet-sonarscanner begin /k:\"GEA-DevHub-Workshop-1\" /d:sonar.token=\"${{ secrets.SONAR_TOKEN }}\" /d:sonar.host.url=\"${{ secrets.SONAR_HOST_URL }}\"\ndotnet build  ${{ env.solutionPath }} \n${{ runner.temp }}\\scanner\\dotnet-sonarscanner end /d:sonar.token=\"${{ secrets.SONAR_TOKEN }}\"\n"
+        run: |
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"GEA-DevHub-Workshop-1" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          dotnet build  ${{ env.solutionPath }} 
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
