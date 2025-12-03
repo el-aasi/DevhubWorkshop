@@ -52,4 +52,9 @@ jobs:
       - name: Install Resharper
         run: dotnet tool install --local JetBrains.ReSharper.GlobalTools --version 2025.3.0.3
       - name: Run ReSharper Inspection
-        run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.json
+        run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.sarif
+      - name: Upload Results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        if: success() || failure() # Run even if issues are found
+        with:
+          sarif_file: inspection-results.sarif
