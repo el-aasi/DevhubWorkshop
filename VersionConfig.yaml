@@ -3,7 +3,7 @@ branches:
   main:
     regex: ^latest$
   feature:
-    regex: ^features?[/-]
+    regex: '^features?[\/-](?<BranchName>.+)'
     label: '{BranchName}'
     increment: Minor
     source-branches: ["main"]
