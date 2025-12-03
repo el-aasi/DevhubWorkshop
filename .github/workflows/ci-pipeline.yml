@@ -34,8 +34,8 @@ jobs:
         run: dotnet build ${{ env.solutionPath }} --configuration Release --no-restore -p:Version=${{ steps.version_step.outputs.SemVer }}
       - name: Test
         run: dotnet test ${{ env.solutionPath }} --configuration Release --no-build --no-restore
-  lint:
-    runs-on: ubutnu-latest
+  lint_and_inspect_code:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,6 +45,10 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "9.0.x"
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.solutionPath }}
+      - name: Build
+        run: dotnet build ${{ env.solutionPath }}
       - name: Install Resharper
         run: dotnet tool install --local JetBrains.ReSharper.GlobalTools --version 2025.3.0.3
       - name: Run ReSharper Inspection
