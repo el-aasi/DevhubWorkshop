@@ -8,4 +8,4 @@ branches:
     regex: ^features?[/-]
     tag: useBranchName
     increment: Minor
-    source-branches: ["master"]
+    source-branches: ["main"]
