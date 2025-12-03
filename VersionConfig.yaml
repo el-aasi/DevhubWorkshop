@@ -5,7 +5,7 @@ branches:
   pull-request:
     tag: pr
   feature:
-    regex: ^feature?[/-]
+    regex: ^features?[/-]
     tag: useBranchName
     increment: Minor
     source-branches: ["master"]
