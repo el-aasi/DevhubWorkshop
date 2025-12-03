@@ -54,7 +54,7 @@ jobs:
       - name: Run ReSharper Inspection
         run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.sarif
       - name: Upload Results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure() # Run even if issues are found
+        uses: github/codeql-action/upload-sarif@v4
+        if: success() || failure()
         with:
           sarif_file: inspection-results.sarif
