@@ -24,7 +24,7 @@ jobs:
         id: version_step
         uses: gittools/actions/gitversion/execute@v4.2.0
         with:
-          configFilePath: VersionConfig.yml
+          configFilePath: VersionConfig.yaml
       # Install .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
