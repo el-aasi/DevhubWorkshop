@@ -35,3 +35,5 @@ jobs:
         run: dotnet restore ${{ env.solutionPath }}
       - name: Build
         run: dotnet build ${{ env.solutionPath }} --configuration Release --no-restore -p:Version=${{ steps.version_step.outputs.SemVer }}
+      - name: Test
+        run: dotnet test ${{ env.solutionPath }} --configuration Release --no-build --no-restore
