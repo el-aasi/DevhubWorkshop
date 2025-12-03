@@ -20,6 +20,11 @@ jobs:
         with:
           versionSpec: "6.4.x"
           preferLatestVersion: true
+      - name: Determine Version
+        id: version_step # step id used as a reference for output values
+        uses: gittools/actions/gitversion/execute@v4.2.0
+        with:
+          configFilePath: VersionConfig.yml
       # Install .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
