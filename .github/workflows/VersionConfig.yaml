@@ -4,3 +4,8 @@ branches:
     regex: ^latest$
   pull-request:
     tag: pr
+  feature:
+    regex: ^features?[/-]
+    tag: useBranchName
+    increment: Minor
+    source-branches: ["master"]

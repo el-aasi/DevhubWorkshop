@@ -21,7 +21,7 @@ jobs:
           versionSpec: "6.4.x"
           preferLatestVersion: true
       - name: Determine Version
-        id: version_step # step id used as a reference for output values
+        id: version_step
         uses: gittools/actions/gitversion/execute@v4.2.0
         with:
           configFilePath: VersionConfig.yml
