@@ -59,9 +59,9 @@ jobs:
         with:
           sarif_file: inspection-results.sarif
       - name: Process Results with PowerShell
-        if: always() # Ensure this runs even if the previous step found issues
+        if: always()
         shell: pwsh
-        run: ./.github/workflows/scripts/analyzeInspectCodeOuputput.ps1 "inspection-results.sarif"
+        run: ./.github/workflows/scripts/analyzeInspectCodeOutput.ps1 "inspection-results.sarif"
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
