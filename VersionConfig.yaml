@@ -2,8 +2,6 @@ mode: ContinuousDelivery
 branches:
   master:
     regex: ^latest$
-  pull-request:
-    tag: pr
   feature:
     regex: ^features?[/-]
     tag: useBranchName
