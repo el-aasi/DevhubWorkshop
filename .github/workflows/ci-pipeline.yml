@@ -7,10 +7,9 @@ on:
 env:
   solutionPath: "src/ShoppingCart.sln"
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
-      # Checkout source
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -25,15 +24,28 @@ jobs:
         uses: gittools/actions/gitversion/execute@v4.2.0
         with:
           configFilePath: VersionConfig.yaml
-      # Install .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "9.0.x"
-      # Restore packages
       - name: Restore dependencies
         run: dotnet restore ${{ env.solutionPath }}
       - name: Build
         run: dotnet build ${{ env.solutionPath }} --configuration Release --no-restore -p:Version=${{ steps.version_step.outputs.SemVer }}
       - name: Test
         run: dotnet test ${{ env.solutionPath }} --configuration Release --no-build --no-restore
+  lint:
+    runs-on: ubutnu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+      - name: Install Resharper
+        run: dotnet tool install --local JetBrains.ReSharper.GlobalTools --version 2025.3.0.3
+      - name: Run ReSharper Inspection
+        run: dotnet jb inspectcode ${{ env.solutionPath }} --output=inspection-results.json --format=Json
