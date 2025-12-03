@@ -34,4 +34,4 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore ${{ env.solutionPath }}
       - name: Build
-        run: dotnet build ${{ env.solutionPath }} --configuration Release --no-restore
+        run: dotnet build ${{ env.solutionPath }} --configuration Release --no-restore -p:Version=$steps.version_step.outputs.FullSemVert
